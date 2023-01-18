@@ -4,9 +4,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class PhysicsCalculatorUtil {
-    private PhysicsCalculatorUtil(){
+    private PhysicsCalculatorUtil() {
         System.out.println("Dangerous Action in Util Class!!!");
     }
+
     /**
      * Only Use This In IDEA Terminal
      */
@@ -22,7 +23,7 @@ public class PhysicsCalculatorUtil {
     /**
      * Use This In Windows Terminal
      */
-    public static void clearConsoleInWindowsTerminal(){
+    public static void clearConsoleInWindowsTerminal() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }

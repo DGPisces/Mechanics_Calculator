@@ -23,7 +23,7 @@ public class Main {
         }
     }
 
-    public static double linearMotion(Scanner scanner){
+    public static double linearMotion(Scanner scanner) {
         int nextLineJudge = 0;
         String distance;
         String acceleration;
@@ -44,7 +44,7 @@ public class Main {
             }
             System.out.println("-------------Linear Motion-------------");
             System.out.println("Please input the data you have (press enter directly if there's an unknown value)");
-            if(nextLineJudge==0) {
+            if (nextLineJudge == 0) {
                 scanner.nextLine();
             }
             System.out.print("Distance: ");
@@ -77,11 +77,11 @@ public class Main {
             if (time.length() != 0) {
                 timeStatus = true;
             } else {
-                timeStatus =false;
+                timeStatus = false;
                 judgement.add(false);
             }
             if (initVelocity.length() != 0) {
-                initStatus =true;
+                initStatus = true;
             } else {
                 initStatus = false;
                 judgement.add(false);
@@ -124,79 +124,69 @@ public class Main {
         */
         double result;
         double secResult;
-        if(!accStatus){
-            if(!distStatus){
+        if (!accStatus) {
+            if (!distStatus) {
                 double timeConvert = Double.parseDouble(time);
                 double initConvert = Double.parseDouble(initVelocity);
                 double terminalConvert = Double.parseDouble(terminalVelocity);
-                result = LinearMotion.equationUnknownAccWithoutDist(timeConvert,initConvert, terminalConvert);
-                secResult = LinearMotion.equationUnknownDist(result, initConvert,terminalConvert);
-            }
-            else if (!initStatus){
+                result = LinearMotion.equationUnknownAccWithoutDist(timeConvert, initConvert, terminalConvert);
+                secResult = LinearMotion.equationUnknownDist(result, initConvert, terminalConvert);
+            } else if (!initStatus) {
                 double distConvert = Double.parseDouble(distance);
                 double timeConvert = Double.parseDouble(time);
                 double terminalConvert = Double.parseDouble(terminalVelocity);
-                result = 0; //Unfinished Start From Here!
-            }
-            else if (!timeStatus){
-
-            }
-            else{
+                result = LinearMotion.equationUnknownAccWithoutInit(timeConvert, terminalConvert, distConvert);
+                secResult = LinearMotion.equationUnknownInit(result, timeConvert, terminalConvert);
+            } else if (!timeStatus) {
                 double distConvert = Double.parseDouble(distance);
-                double timeConvert = Double.parseDouble(time);
                 double initConvert = Double.parseDouble(initVelocity);
                 double terminalConvert = Double.parseDouble(terminalVelocity);
-                result = LinearMotion.equationUnknownAcc(distConvert, initConvert,terminalConvert);
+                result = LinearMotion.equationUnknownAccWithoutTime(initConvert, terminalConvert, distConvert);
+                secResult = LinearMotion.equationUnknownTime(result, initConvert, terminalConvert);
+            } else {
+                double distConvert = Double.parseDouble(distance);
+                double initConvert = Double.parseDouble(initVelocity);
+                double terminalConvert = Double.parseDouble(terminalVelocity);
+                result = LinearMotion.equationUnknownAcc(distConvert, initConvert, terminalConvert);
             }
-        }
-        else if (!distStatus) {
-            if(!initStatus){
+        } else if (!distStatus) {
+            if (!initStatus) {
 
-            }
-            else if(!terminalStatus){
+            } else if (!terminalStatus) {
 
             } else if (!timeStatus) {
 
-            }
-            else {
-                double accConvert  = Double.parseDouble(acceleration);
-                double timeConvert = Double.parseDouble(time);
+            } else {
+                double accConvert = Double.parseDouble(acceleration);
                 double initConvert = Double.parseDouble(initVelocity);
                 double terminalConvert = Double.parseDouble(terminalVelocity);
-                result = LinearMotion.equationUnknownDist(accConvert, initConvert,terminalConvert);
+                result = LinearMotion.equationUnknownDist(accConvert, initConvert, terminalConvert);
             }
-        }
-        else if (!initStatus) {
-            if(!terminalStatus){
+        } else if (!initStatus) {
+            if (!terminalStatus) {
 
             } else if (!timeStatus) {
 
-            }else {
-                double distConvert = Double.parseDouble(distance);
-                double accConvert  = Double.parseDouble(acceleration);
+            } else {
+                double accConvert = Double.parseDouble(acceleration);
                 double timeConvert = Double.parseDouble(time);
                 double terminalConvert = Double.parseDouble(terminalVelocity);
-                result = LinearMotion.equationUnknownInit(accConvert,timeConvert,terminalConvert);
+                result = LinearMotion.equationUnknownInit(accConvert, timeConvert, terminalConvert);
             }
-        }
-        else if(!timeStatus){
-            if (!terminalStatus){
+        } else if (!timeStatus) {
+            if (!terminalStatus) {
 
-            }
-            else{
-                double distConvert = Double.parseDouble(distance);
-                double accConvert  = Double.parseDouble(acceleration);
+            } else {
+                double accConvert = Double.parseDouble(acceleration);
                 double initConvert = Double.parseDouble(initVelocity);
                 double terminalConvert = Double.parseDouble(terminalVelocity);
-                result = LinearMotion.equationUnknownTime(accConvert,initConvert,terminalConvert);
+                result = LinearMotion.equationUnknownTime(accConvert, initConvert, terminalConvert);
             }
-        }
-        else{
-            double distConvert = Double.parseDouble(distance);
-            double accConvert  = Double.parseDouble(acceleration);
+        } else {
+            double accConvert = Double.parseDouble(acceleration);
             double timeConvert = Double.parseDouble(time);
             double initConvert = Double.parseDouble(initVelocity);
-            result = LinearMotion.equationUnknownTerminal(accConvert,initConvert,timeConvert);
+            result = LinearMotion.equationUnknownTerminal(accConvert, initConvert, timeConvert);
         }
         return 1;
 
