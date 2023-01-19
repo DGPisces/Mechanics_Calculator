@@ -2,6 +2,8 @@ package cn.dgpisces.physics_calculator;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PhysicsCalculatorUtil {
     private PhysicsCalculatorUtil() {
@@ -26,6 +28,20 @@ public class PhysicsCalculatorUtil {
     public static void clearConsoleInWindowsTerminal() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public static Map<String, Double> decomposedToXYDirection(double angle, double combined){
+        Map<String, Double> map = new HashMap<>();
+        double angleInRadians = Math.toRadians(angle);
+        double xDirection = (combined*Math.cos(angleInRadians));
+        double yDirection = (combined*Math.sin(angleInRadians));
+        map.put("x",xDirection);
+        map.put("y",yDirection);
+        return map;
+    }
+    public static double composedXYToSingle(double xDirection, double yDirection){
+        double angleInRadians = (Math.atan2(yDirection,xDirection));
+        return Math.toDegrees(angleInRadians);
     }
 
 }

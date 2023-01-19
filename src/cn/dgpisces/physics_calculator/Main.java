@@ -7,6 +7,7 @@ package cn.dgpisces.physics_calculator;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -23,6 +24,7 @@ public class Main {
                 linearMotion(scanner);
                 break;
             case 2:
+                twoDMotion(scanner);
                 break;
             default:
         }
@@ -247,6 +249,80 @@ public class Main {
             if(check.equalsIgnoreCase("n")){
                 break;
             }
+        }
+    }
+
+    public static void twoDMotion(Scanner scanner) {
+        int input;
+        while (true) {
+            try {
+                PhysicsCalculatorUtil.clearConsole();
+            } catch (AWTException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("-------------2D Motion-------------");
+            System.out.println("1. Decomposed or composed vector");
+            System.out.println("2. Calculation");
+            System.out.print("Input: ");
+            input = scanner.nextInt();
+            if (input != 1 && input != 2) {
+                System.out.println("Unknown Input, please retry!");
+            } else {
+                break;
+            }
+        }
+            switch (input) {
+                case 1:
+                    composedAndDecomposedVector(scanner);
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+            }
+    }
+
+    public static void composedAndDecomposedVector(Scanner scanner){
+        int input;
+        while(true) {
+            try {
+                PhysicsCalculatorUtil.clearConsole();
+            } catch (AWTException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("-------------Composed or Decomposed Vector-------------");
+            System.out.println("1. x y vector composes to single vector");
+            System.out.println("2. single vector decomposes to x y vector");
+            System.out.print("Input: ");
+            input = scanner.nextInt();
+            if (input != 1 && input != 2) {
+                System.out.println("Unknown Input, please retry!");
+            } else {
+                break;
+            }
+        }
+        switch (input){
+            case 1:
+                System.out.println("-------------1. x y vector composes to single vector-------------");
+                System.out.print("x Direction: ");
+                double xDirection = scanner.nextDouble();
+                System.out.print("y Direction: ");
+                double yDirection = scanner.nextDouble();
+                double angleOutput = PhysicsCalculatorUtil.composedXYToSingle(xDirection,yDirection);
+                System.out.println("Angle: " + angleOutput);
+                break;
+            case 2:
+                System.out.println("-------------2. single vector decomposes to x y vector-------------");
+                System.out.print("Angle: ");
+                double angle = scanner.nextDouble();
+                System.out.print("Combined Velocity/Acceleration: ");
+                double combined = scanner.nextDouble();
+                Map<String, Double> returnMap = PhysicsCalculatorUtil.decomposedToXYDirection(angle,combined);
+                System.out.println("X Direction: " + returnMap.get("x"));
+                System.out.println("Y Direction: " + returnMap.get("y"));
+                break;
+            default:
+                break;
         }
     }
 }
